@@ -20,6 +20,7 @@ body {
 }
 
 #display {
+  display: block;
   background-color: #e6e5e2;
   font-size: 50px;
   min-height: 1.1em;
