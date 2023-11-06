@@ -1,4 +1,5 @@
 const MAX_DIGIT = 9;
+const MAX_SCIENTIFIC = 7;
 let num1;
 let op;
 let num2;
@@ -83,7 +84,7 @@ function handleNumber (e){
 				num1 = +(num1 + num);
 			}
 		}
-		display.textContent = num1;
+		display.textContent = formatOutput(num1);
 	}
 
 	//Handle second number in expression. Allow equality button to be used because second number is defined.
@@ -100,7 +101,7 @@ function handleNumber (e){
 			}
 		}
 		equality = true;
-		display.textContent = num2;
+		display.textContent = formatOutput(num2);
 	}
 	
 }
@@ -148,7 +149,35 @@ function storeSolution(sol){
 		num1 = +sol.ans;
 		op = null;
 		num2 = null;
-		display.textContent = num1;
+		display.textContent = formatOutput(num1);
 	}
 	return;
+}
+
+//Format output to stay within display by either scientific notation or truncation
+function formatOutput(num){
+	const RESERVED_SCIENTIFIC_DIGIT = 7;
+	//For converting to scientific if number is too big or small
+	let maxNum = "9";
+	let minNum = "0."
+	
+	//Need an extra "-1" for MAX_DIGIT to account for possible negative sign
+	for (let i = 0; i < MAX_DIGIT - 2; i++){
+		maxNum += "9";
+	}
+	
+	for (let i = 0; i < MAX_DIGIT - 4; i++){
+		minNum += "0";
+	}
+	minNum += "1";
+	
+	if (Math.abs(num) >  +maxNum || Math.abs(num) < minNum){
+		return num.toExponential(MAX_DIGIT - RESERVED_SCIENTIFIC_DIGIT);
+	}
+	
+	let numLength = String(num).length;
+	if (numLength > MAX_DIGIT){
+		return num.toFixed(MAX_DIGIT - (String(num).indexOf(".") + 1));
+	}
+	return num;
 }
