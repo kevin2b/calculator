@@ -3,7 +3,7 @@ Project from The Odin Project to create a basic calculator.
 
 ## Definition
 1. A/C is Reset Button.
-1. The buttons \0-9 are Number Buttons.
+1. The buttons 0-9 are Number Buttons.
 1. The "+", "-". "/" and "\*" buttons are Operator Buttons.
 1. The "=" key is Equality Button.
 
