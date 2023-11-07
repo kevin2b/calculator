@@ -166,6 +166,7 @@ function formatOutput(num){
 		maxNum += "9";
 	}
 	
+	//Have 3 numbers created by default out of this loop, need extra -1 to account for possible negative sign
 	for (let i = 0; i < MAX_DIGIT - 4; i++){
 		minNum += "0";
 	}
